@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+  \DeclareMathOperator*{\argmax}{arg\,max}
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage{upquote}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{xcolor}
+\usepackage{mcode}
+\usepackage[numbered,framed]{matlab-prettifier}
+
+\title{Pattern and Speech Recognition WS2015-16 \\ Exercise 2}
+\author{Atanas Poibrenski, Marimuthu Kalimuthu, Muhammad Ahmad}
+
+\begin{document}
+
+\maketitle
+
+\section*{1 Preparation}
+\subsection*{1.1 Loading and Plotting in the waveform}
+
+\begin{enumerate}
+\item preparing the environment ..
+  
+\begin{figure}[h]
+\end{figure}
+
+\end{enumerate}
+
+\section*{2 Spectrum Analysis}
+\subsection*{2.1 A reference plot}
+\hspace*{12pt}[TODO]
+
+\subsection*{2.2 Compute spectrum}
+\subsubsection*{2.2.1 windowing}
+\hspace*{12pt}[TODO]
+
+\section*{Bonus - From spectrum to mel-cepstrum}
+\hspace*{12pt}[TODO]
+
+\lstinputlisting{../code/spectrogram.m}
+
+\vspace{1em}
+
+\begin{lstlisting}
+%return area of a triangle%
+function [Area] = Area(a,b,c)
+s = (a+b+c)/2;
+Area = sqrt(s(s-a)*(s-b)*(s-c));
+\end{lstlisting}
+
+
+
+\end{document}
