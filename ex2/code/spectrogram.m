@@ -15,9 +15,25 @@ slengthms = slength*1000;
 %linearly spaced vector of size N %
 t=linspace(0, slength, N);
 
+%plot whole waveform
 figure(1), plot(t,f);
 title('complete waveform'), xlabel('time(s) ---> '), ylabel('amplitude');
 clc;
+
+%plot from 0.55s to 0.6s
+f_55s_new = f((0.55/slength)*N:(0.6/slength)*N);
+t_55s_new = t((0.55/slength)*N:(0.6/slength)*N);
+figure(2), plot(t_55s_new,f_55s_new);
+title('waveform from 0.55s to 0.6s'), xlabel('time(s) ---> '), ylabel('amplitude');
+clc;
+
+%plot from 2s to 2.1s
+f_2s_new = f((2/slength)*N:(2.1/slength)*N);
+t_2s_new = t((2/slength)*N:(2.1/slength)*N);
+figure(3), plot(t_2s_new,f_2s_new);
+title('waveform from 2s to 2.1s'), xlabel('time(s) ---> '), ylabel('amplitude');
+clc;
+
 
 %spectrogram with default values, N samples%
 n = 0:1024-1;
