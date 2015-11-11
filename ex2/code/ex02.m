@@ -49,6 +49,14 @@ figure(6);
 spectrogram(f_2s_new,'yaxis');
 title('spectrogram  2s to 2.1s');
 
+x = [-10:110];
+result = rectWindow(x,100);
+result2 = hammingWindow(x,100);
+figure(7);
+plot(result);
+figure(8);
+plot(result2);
+
 
 
 
