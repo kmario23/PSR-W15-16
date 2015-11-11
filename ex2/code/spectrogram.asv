@@ -13,7 +13,7 @@ slength = N/Fs;
 slengthms = slength*1000;
 
 %linearly spaced vector of size N %
-t=linspace(0, slength, N);
+%t=linspace(0, slength, N);
 
 %plot whole waveform
 figure(1), plot(t,f);
