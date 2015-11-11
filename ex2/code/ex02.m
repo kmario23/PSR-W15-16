@@ -35,20 +35,23 @@ figure(3), plot(t_2s_new,f_2s_new);
 title('waveform from 2s to 2.1s'), xlabel('time(s) ---> '), ylabel('amplitude');
 clc;
 
-
+%plot whole spectrogram 
 s = spectrogram(f);
 figure(4);
 spectrogram(f,'yaxis');
 title('complete spectrogram');
 
+%spectrogram of the 0.55s to 0.6 interval
 figure(5);
 spectrogram(f_55s_new,'yaxis');
 title('spectrogram  0.55s and ending at 0.6s');
 
+%spectrogram of the 2s to 2.1s interval
 figure(6);
 spectrogram(f_2s_new,'yaxis');
 title('spectrogram  2s to 2.1s');
 
+%plot rect and hamming windows in the interval [-10,110]
 x = [-10:110];
 result = rectWindow(x,100);
 result2 = hammingWindow(x,100);
