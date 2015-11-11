@@ -36,6 +36,10 @@ title('waveform from 2s to 2.1s'), xlabel('time(s) ---> '), ylabel('amplitude');
 clc;
 
 
+%spectrogram with default values, N samples%
+%n = 0:1024-1;
+%w0 = 2*pi/5;
+%x = sin(w0*n)+10*sin(2*w0*n);
 s = spectrogram(f);
 figure(4);
 spectrogram(f,'yaxis');
@@ -43,11 +47,8 @@ title('complete spectrogram');
 
 figure(5);
 spectrogram(f_55s_new,'yaxis');
-title('spectrogram  0.55s and ending at 0.6s');
+title('spectrogram  0.55ms and ending at 0.6ms');
 
-figure(6);
-spectrogram(f_2s_new,'yaxis');
-title('spectrogram  2s to 2.1s');
 
 
 
