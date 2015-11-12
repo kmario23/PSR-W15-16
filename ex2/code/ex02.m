@@ -60,6 +60,14 @@ plot(result);
 figure(8);
 plot(result2);
 
+%apply hamming window to the signal
+winsize = 25;
+frameshift = 5;
+f_new = applyHamming(f,winsize,frameshift,slengthms);
+figure(8), plot(t,f_new);
+title('complete waveform'), xlabel('time(s) ---> '), ylabel('amplitude');
+clc;
+
 
 
 
