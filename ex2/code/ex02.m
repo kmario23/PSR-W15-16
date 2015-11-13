@@ -59,16 +59,16 @@ figure(7), plot(resRect);
 figure(8), plot(resHamm);
 
 %apply and plot fourier transform of the signal at 0.55s
-N=1024; 	 
-X=fft(f(26400:27600),N);	 	 
-nVals=(-N/2:N/2-1); %fft sample points	 
+N=1024;
+X=fft(f(26400:27600),N);
+nVals=(-N/2:N/2-1); %fft sample points
 figure(9), plot(nVals,abs(X));
 title('Fourier spectrum of the signal from 0.55s to 0.575s'), xlabel('Sample Points'), ylabel('FFT values');
 clc;
 
 %apply fftshift
-N=1024; 	 
-X=fftshift(fft(f(26400:27600),N));	 	 
+N=1024;
+X=fftshift(X);
 nVals=Fs*((-N/2:N/2-1)/N); %x axis will now represent frequency	 
 figure(10), plot(nVals,abs(X));
 title('Fourier spectrum of the signal from 0.55s to 0.575s'), xlabel('Frequency'), ylabel('FFT values');
@@ -78,7 +78,4 @@ clc;
 figure(11),plot(nVals,powerSpectrum(X));
 title('Power spectrum of the signal from 0.55s to 0.575s'), xlabel('Frequency'), ylabel('Amplitude');
 clc;
-
-
-
 
