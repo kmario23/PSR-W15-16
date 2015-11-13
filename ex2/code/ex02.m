@@ -53,7 +53,6 @@ title('spectrogram  2s to 2.1s');
 
 %plot rect and hamming windows in the interval [-10,110]
 x = [-10:110];
-<<<<<<< HEAD
 resRect = rectWindow(x,100);
 resHamm = hammingWindow(x,100);
 figure(7), plot(resRect);
@@ -74,17 +73,3 @@ figure(10), plot(nVals,abs(X));
 
 
 
-=======
-rectres = rectWindow(x,100);
-hammres = hammingWindow(x,100);
-figure(7), plot(rectres);
-figure(8), plot(hammres);
-
-%apply hamming window to the signal
-winsize = 25;
-frameshift = 5;
-f_new = applyHamming(f,winsize,frameshift,slengthms);
-figure(9), plot(t,f_new);
-title('Hamming applied complete waveform'), xlabel('time(ms) ---> '), ylabel('amplitude');
-clc;
->>>>>>> eb60da0857d1e77229675114fdad76014a53d06c
