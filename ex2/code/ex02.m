@@ -60,7 +60,7 @@ figure(8), plot(resHamm);
 
 %apply and plot fourier transform of the signal at 0.55s
 N=1024;
-X=fft(f(26400:27600),N);
+X=fft(applyHamming(f,25,110,slengthms),N);
 nVals=(-N/2:N/2-1); %fft sample points
 figure(9), plot(nVals,abs(X));
 title('Fourier spectrum of the signal from 0.55s to 0.575s'), xlabel('Sample Points'), ylabel('FFT values');
@@ -76,6 +76,6 @@ clc;
 
 %plot power spectrum
 figure(11),plot(nVals,powerSpectrum(X));
-title('Power spectrum of the signal from 0.55s to 0.575s'), xlabel('Frequency'), ylabel('Amplitude');
+title('Power spectrum of the signal from 0.55s to 0.575s'), xlabel('Frequency'), ylabel('Power');
 clc;
 
