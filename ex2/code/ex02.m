@@ -74,8 +74,13 @@ figure(10), plot(nVals,abs(X));
 title('Fourier spectrum of the signal from 0.55s to 0.575s'), xlabel('Frequency'), ylabel('FFT values');
 clc;
 
-%plot power spectrum
+%plot power spectrum at 0.55s
 figure(11),plot(nVals,powerSpectrum(X));
 title('Power spectrum of the signal from 0.55s to 0.575s'), xlabel('Frequency'), ylabel('Power');
+clc;
+
+%plot cosine transform of the power spectrum at 0.55s
+figure(12),plot(nVals, dct(powerSpectrum(X)));
+title('Cosine Transform of the Power spectrum of the signal from 0.55s to 0.575s'), xlabel('Frequency'), ylabel('DCT coefficients');
 clc;
 
