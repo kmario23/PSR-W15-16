@@ -10,27 +10,27 @@ else
 hist_(1,2) = 1;
 end
 
-if D(5) == 'y'
+if D(4) == 'y'
 	path_ = [path_, 'y'];
 	if labels(index) == 'r'
 	hist_(3,1) = 1;
 	else
 	hist_(3,2) = 1;
 	end
-	if D(12) == 'y'
+	if D(11) == 'y'
 	path_ = [path_, 'y'];
 		if labels(index) == 'r'
 		hist_(5,1) = 1;
 		else
 		hist_(5,2) = 1;
 		end
-		if D(4) == 'y'
+		if D(3) == 'y'
 		path_ = [path_, 'y'];
 			if labels(index) == 'r'
 			hist_(7,1) = 1;
 			else
 			hist_(7,2) = 1;
-			end
+			end								
 		else 
 		path_ = [path_, 'n'];
 			if labels(index) == 'r'
