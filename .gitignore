@@ -1,7 +1,2 @@
 #Tex packages
 *.sty
-
-#Tex log files
-*.synctex.gz
-*.log
-*.aux
