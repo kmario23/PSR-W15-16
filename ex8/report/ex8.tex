@@ -17,7 +17,7 @@
 \usepackage{varwidth} 
 
 
-\title{Pattern and Speech Recognition WS2015-16 \\ Exercise 7}
+\title{Pattern and Speech Recognition WS2015-16 \\ Exercise 8}
 \author{Atanas Poibrenski(2554135), Marimuthu Kalimuthu(2557695), Furkat Kochkarov(2557017)}
 
 \begin{document}
@@ -34,103 +34,69 @@
 	\textbf{Decision Trees}
 \end{center}
 
-\section*{Exercise 1}
+\section*{1 Loading the data}
 \begin{enumerate}
-	\item[ \textbf{1} ] Done.
-	\item[ \textbf{2} ] See ``decision\_tree.m"
-	\item[ \textbf{3} ] Histogram plot:
+	\item[ \textbf{Ex.1} ] Done.
+	\item[ \textbf{Ex.2} ] See ``data\_preparation.m"
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[width=1.0\textwidth]{hists.eps}
-			\caption{Histogram for two class labels (blue=republican, red=democrat) }\label{fig:hist_1.3}
+			\includegraphics[width=1.1\textwidth]{plot.eps}
+			\caption{Histogram plot of phoneme durations}\label{fig:hist}
 		\end{center}
 	\end{figure}
+
+	\item[ \textbf{Ex.3} ] \textbf{Bonus}: \newline
+	Yes, we can use Gaussian Mixture Models for duration modeling. We create 60 components which is the total number of phoneme types(i.e., Vowel, Consonant) and fit a Gaussian to each. Then a new phoneme comes we predict the cluster with highest probability which contains the phoneme.
 	
-	(From the histogram), the highest probability class at every node are as follows:
-	
+	\item[ \textbf{Ex.4} ] \textbf{Bonus}: \newline
+	In GMM, we always have a certain probability of a phoneme belonging to particular cluster. In decision trees, a phoneme either belongs to certain type or not.(i.e. it is a binary decision).
+
+	\item[ \textbf{Ex.5} ] Divide dataset: \newline
+	We use matlab's `dividerand' function which gives random indices. (i.e. shuffle the data). Then we get the following counts: \newline
 	\begin{tcolorbox}
-	\begin{align*}
-		& node1 = democrat  \\
-		& node2 = democrat   \\
-		& node3 = republican  \\
-		& node4 = republican  \\
-		& node5 = republican \\
-		& node6 = republican \\
-		& node7 = democrat		
-	\end{align*}
+       Training set (90\%) -- 34980 samples \newline
+	   Validation set (5\%) -- 1943 samples \newline
+	   Test set (5\%) -- 1943 samples
 	\end{tcolorbox}
-			
-	The histogram tells us that the quality of the questions is good since the splits result in low misclassification rates and are almost pure.
-	
-	\item[ \textbf{4} ] Misclassification Rates:
-	    \begin{tcolorbox}
-		\begin{align*}
-			& node1 = 0.38 \\
-			& node2 = 0.019 \\
-			& node3 = 0.07  \\
-			& node4 = 0.02  \\
-			& node5 = 0.34  \\
-			& node6 = 0.25  \\
-			& node7 = 0.375
-		\end{align*}
-    \end{tcolorbox}
-    
-	\item[ \textbf{5} ] Entropy of the nodes:
-	%ex 1.5 entropy of each node
-		\begin{tcolorbox}
-		\begin{align*}
-			& node1 = 0.96  \\
-			& node2 = 0.137  \\
-			& node3 = 0.398  \\
-			& node4 = 0.145  \\
-			& node5 = 0.92  \\
-			& node6 = 0.811  \\
-			& node7 = 0.95
-		\end{align*}
-	\end{tcolorbox}
-	
-	\item[ \textbf{6} ] Information Gain:
-	    \begin{tcolorbox}
-	    \begin{align*}
-		  %ex 1.6 information gain of non-leaf nodes
-		  & node1 = 0.96 - (258/435 * 0.137 + 167/435 * 0.398)
-		          = 0.72  \\ 
-		  & node2 = 0.398 - (145/177 * 0.145 + 32/177 * 0.92)
-		          = 0.11  \\
-		  & node3 = 0.92 - (24/32 * 0.811 + 8/32 * 0.95)
-		          = 0.07  \\
-	    \end{align*}
-	    \end{tcolorbox}
-	
-	\item[ \textbf{7} ] Why Information Gain? \newline
-	The information gain is a good measure because for a given node, maximizing the information gain is equivalent to minimizing the entropy of its children. Minimizing the entropy of the children will result in more ``purity", therefore less classification error. \newline \newline
-	The question about \textit{anti-satellite-test-ban} will maximize the information gain. This question will result in \textit{pure splits}.
-	
-	\item[ \textbf{8} ] Algorithm to construct complete decision tree: \newline
-	* Start with the \textit{root node}. \newline
-	* For all the possible questions to ask, choose the one which results into the highest possible information gain. \newline
-	* Repeat this for all the nodes. \newline
-	* If a splitting of a node results into a \textit{pure split}, stop splitting on that node.
+\end{enumerate}
+
+\section*{2 Decision Tree clustering}
+\subsection*{2.1 Preliminary work}
+
+\begin{enumerate}
+	\item[ \textbf{Ex.6} ] data structure: \newline
+	We use matlab `struct' which has three attributes `value', `left', and `right'.
+	Since we will be using recursion for creation of the tree, it is convenient to use it.
+\end{enumerate}
+
+\subsection*{2.2 Criterion}
+\begin{enumerate}
+	\item[ \textbf{Ex.7} ] find\_question: \newline
+	   See `find\_question.m'. We calculate the entropy impurity for each question and choose the one with minimum impurity.
+	   
+	\item[ \textbf{Ex.8} ] eval\_tree: \newline
+	 See `eval\_tree.m'. It is calling `classify\_by\_tree' for each data point in the given corpus. And it is calculating the RMSE.
+
+\end{enumerate}
+
+
+\subsection*{2.3 Training the tree}
+\begin{enumerate}
+	\item[ \textbf{Ex.9} ]	`train\_tree'
+	See `train\_tree.m'. It is creating the tree in a recursive manner with a fixed depth for the tree. \newline
+	In `training.m', we call `train\_tree.m' in an iterative deepening manner. This way we get trees with different depths, so that we can apply the stopping criteria where we evaluate two trees of different depths.
 	
 \end{enumerate}
 
-\section*{Exercise-2}
+
+\section*{3 Some analysis}
 	\begin{enumerate}
-		\item[ \textbf{1} ] Prior probabilities of the classes:
+		\item[ \textbf{Ex.10} ]
+		  The same as we did in Ex.5 will work here too.
+		  
+		\item[ \textbf{Ex.11} ] Our training of the tree is not working as desired.
 		
-		\begin{tcolorbox}
-		\hspace*{2em} republican = 0.38 \newline
-		\hspace*{2em} democrat = 0.62
-		\end{tcolorbox}
-		
-		\item[ \textbf{2} ] Conditional Probabilities:
-		\begin{tcolorbox}
-		\hspace*{2em} P(x [``education-spending"] = no $|$ republican) = 0.11 \newline
-		\hspace*{2em} P(x [``education-spending"] = no $|$ democrat) = 0.79
-		\end{tcolorbox}
-		
-	    \item[ \textbf{3} ] Highest probability class: \newline
-	    The \textit{democrat} class has the highest probability given that \textit{x[``education-spending”] = no}
+	    \item[ \textbf{Ex.12} ] Our training of the tree is not working as desired.
 	    
 	\end{enumerate}
 
