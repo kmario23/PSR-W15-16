@@ -1,5 +1,0 @@
-Team-Members
-=============
-Atanas Poibrenski, 2554135, atanas1054@gmail.com
-Marimuthu Kalimuthu, 2557695, marimuthuk@live.com
-Furkat Kochkarov, 2557017, kofuer@gmail.com
