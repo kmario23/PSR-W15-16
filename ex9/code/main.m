@@ -7,7 +7,7 @@ function [data, perm_data, prediction, wml] = main()
    
    %data(:,3) = (2*data(:,3)/(max(data(:,3))))-1;
    
-   %shuffling
+   %shuffling the data (row-wise)
    idx = randperm(size(data,1));
    perm_data = data(idx, :);
 
@@ -16,8 +16,9 @@ function [data, perm_data, prediction, wml] = main()
   % w2 = rand(3,1);
    %wml{1} = w1;
   %wml{2} = w2;
+  
    %train the network (i.e. get the optimal weight matrix)
    wml = trainNetwork(perm_data);
    prediction = predict(wml,perm_data);
-   %predict(data);
+   
 end

@@ -12,15 +12,12 @@ function prediction = predict(wml, data)
 	  
       %a1 = dot(x1x2, w1);
 	  a1 = w1'*x1x2;
-      sgmd1 = (sgd(a1,0))';
+      sgmd1 = (sigmoid(a1,0))';
 	  
-      
       a2 = w2'*sgmd1;
-      sgmd2 = sgd(a2,0);
+      sgmd2 = sigmoid(a2,0);
       
       prediction(i,1) = sgmd2;
    end
    
 end
-
-
