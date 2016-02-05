@@ -1,0 +1,88 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+  \DeclareMathOperator*{\argmax}{arg\,max}
+  \newcommand{\ex}[1]{{\mathbb E}\left[ #1 \right]}
+  \newcommand\norm[1]{\left\lVert#1\right\rVert}
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage{upquote}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{subcaption}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{varwidth} 
+
+
+\title{Pattern and Speech Recognition WS2015-16 \\ Exercise 9}
+\author{Atanas Poibrenski(2554135), Marimuthu Kalimuthu(2557695), Furkat Kochkarov(2557017)}
+
+\begin{document}
+	\tcbset{
+		enhanced,
+		colback=red!5!white,
+		boxrule=0.1pt,
+		colframe=red!75!black,
+		fonttitle=\bfseries
+	}
+
+\maketitle 
+\begin{center}
+	\textbf{Hidden Markov Model}
+\end{center}
+
+\section*{Exercise-2}
+\begin{itemize}
+	\item Done.
+\end{itemize}
+
+\section*{Exercise-3}
+	\begin{itemize}
+		\item The results are:
+		
+			\begin{tcolorbox}
+				Accuracy = 91.9\% \\
+				Precision = 75.87\% \\
+				Recall = 48.46\% \\
+				F-Score = 59.14\% \\
+			\end{tcolorbox}						    
+	\end{itemize}
+
+
+\section*{Exercise-4}
+\begin{itemize}
+	\item x = 2, 1, 5, 6, 2, 1, 3, 1, 6, 2 \newline
+	  $\pi$ = F, F, L, F, F, F, L, F, L, F \newline
+	  
+	  The maximum likelihood probability of transitioning from state \textbf{i} to state \textbf{j} is just the number of times we transition from \textbf{i} to \textbf{j} divided by the total number of times we are in state \textbf{i}. In other words, the maximum likelihood parameter corresponds to the fraction of the time when we were in state \textbf{i} that we transitioned to \textbf{j} \newline
+	  
+	  Formula to caculate transition matrix: \newline
+	  
+	  $\hat{A}_{ij} = \frac{\sum_{t=1}^{T} 1 \{z_{t-1} = s_{i} \wedge z_{t} = s_{j}\} }{\sum_{t=1}^{T}1 \{z_{t-1} = s_{i}\}}$
+	  
+	  where \textbf{T} is the sequence length and we transition from state \textbf{i} to \textbf{j}.
+	
+	\begin{tcolorbox}
+		$\bordermatrix{
+			  &F     &L    \cr
+			F &3/6   &3/6  \cr
+			L &3/3   &0    \cr			
+			}$
+	\end{tcolorbox}
+	
+	The emission probabilities for state \textbf{j} are calculated as \newline
+	(\# times state \textbf{j} emitted symbol \textbf{s}) $/$ (\# times state \textbf{j} occurred).
+	
+	\begin{tcolorbox}
+		$\bordermatrix{
+			  &1     &2   &3   &4   &5   &6    \cr
+			F &3/7   &3/7 &0   &0   &0   &1/7  \cr
+			L &0     &0   &1/3 &0   &1/3 &1/3  \cr			
+		}$
+	\end{tcolorbox}	    	
+\end{itemize}
+
+\end{document}

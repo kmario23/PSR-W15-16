@@ -1,0 +1,128 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{hyperref}
+\usepackage[hmargin=1.5cm,vmargin=1.5cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{pgf}
+\usepackage{tikz}
+
+\title{Pattern and Speech Recognition Tutorial\\
+Exercise 12 }
+  
+  \date{}
+  \begin{document}
+   \maketitle
+   \thispagestyle{empty}
+
+\maketitle
+
+
+\section*{\bf Exercise 1 (2 points)} 
+In HMMs we did inference over the joint probability distribution: \\
+\begin{equation}
+log (P(x_{1},x_{2}..x_{n}, \pi_{1}, \pi_{2}.. \pi_{n})) = log(P(\pi_{0})) + \sum_{i=1}^{n} log(P(\pi_{i} | \pi_{i-1}) + \sum_{i=1}^{n} log(P(x_{i} | \pi_{i}))
+\end{equation} 
+
+Show that you can rewrite this distribution the following way: \\
+\begin{equation}
+\label{eq:pr}
+log(P(\pi_{0})) + \sum_{i=1}^{n} log(P(\pi_{i} | \pi_{i-1}) + \sum_{i=1}^{n} log(P(x_{i} | \pi_{i})) = \sum_{i=0}^{n} \sum_{j=1}^{N} \lambda_{j} f_{j}(\pi_{i},\pi_{i-1}, x, i)
+\end{equation}
+Where $x$ is the observed sequence, $n$ is the length of the observation and $f_{j}(\pi_{i},\pi_{i-1}, x, i) \in \lbrace 0,1 \rbrace $ are feature functions. The first sum runs over each position $i$ in the observation,the second sum runs over each feature function $j$ . $\lambda_{j} \in \mathbb{R}$ are weights corresponding to each feature function.\\
+\begin{verbatim}
+Example feature functions
+\end{verbatim}
+\begin{itemize}
+\item $f_{1}(\pi_{i},\pi_{i-1}, x, i)= 1$ if $\pi_{i} = s_{1}$ , $0 $  else.
+\item $f_{2}(\pi_{i},\pi_{i-1}, x, i)= 1$ if $\pi_{i} = s_{1}$ and $\pi_{i-1} = s_{2}$, $0 $  else.
+\item $f_{3}(\pi_{i},\pi_{i-1}, x, i)= 1$ if $x_{i} = a$ , $0 $  else.
+\end{itemize}
+
+Specify the feature functions and the corresponding weights for \ref{eq:pr}.
+
+
+\section*{\bf Exercise 2 (2 points)} 
+Install \href{https://taku910.github.io/crfpp/}{CRF++}. Read the documentation. For the template file: \\
+\begin{lstlisting}
+# Unigram
+U:%x[0,0]
+# Bigram
+B
+\end{lstlisting}
+ and training data: \\
+\begin{lstlisting}
+NN B
+IN O
+DT B
+\end{lstlisting}
+
+List the feature functions that the software is going to generate. 
+
+\section*{\bf Exercise 3 (3 points)} 
+Train a model for Spanish named entity recognition with the provided template file and data. The first two columns are the features, the last column is the true labeling.  Evaluate on the test data and report the F-score (use the python file evaluate.py). 
+
+\section*{\bf Exercise 4 (2 points)}
+$x = 2,1,5,6,2,1,3,1,6,2$ $ \pi = F, F, L, F, F, F, L, F, L, F$ \\
+Compute the transition matrix and the emission matrix using maximum likelihood. What can you observe? What is it that the HMM fails to capture?
+
+\newpage
+\subsection*{Submission architecture}
+\label{sec:subm-arch}
+
+You have to generate a \textbf{single ZIP file} respecting the following architecture:
+
+\begin{Verbatim}[frame=lines, framesep=3mm]
+tutorial1_<matriculation_nb1>_<matriculation_nb2>_<matriculation_nb3>
+|
++--- source
+|      |
+|      +------- file 1
+|      +------- file 2
+|      +------- ...
++--- rapport.pdf
++--- README.txt
+\end{Verbatim}
+where
+\begin{itemize}
+    \item \textbf{source} contains the source code of your project,
+    \item \textbf{rapport.pdf} is the report where you present your solution with \textbf{the
+        explanations (!)} and the plots,
+    \item \textbf{README} which contains group member informations (name, matriculation numbers and
+    emails) and a \textbf{clear} explanation about how to compile and run your source code
+\end{itemize}
+
+The ZIP filename has to be :
+
+\begin{verbatim}
+tutorial11_<matriculation_nb1>_<matriculation_nb2>_<matriculation_nb3>.zip
+\end{verbatim}
+
+You have to choose between the following languages \textbf{python} or \textbf{matlab}. Other languages won't be accepted.
+
+\subsection*{Some hints}
+\label{sec:some-advices}
+
+We advice you to follow the following guidelines in order to avoid problems :
+\begin{itemize}
+    \item Avoid building complex systems. The exercises are simple enough.
+    \item Do not include any executables in your submission, as this will cause the e-mail server to reject it.
+\end{itemize}
+
+\subsection*{Grading}
+\label{sec:grading}
+
+Send your assignment to the tutor who is responsible of your group:
+\begin{itemize}
+    \item Gerrit Großmann \url{gerritgr@gmail.com}
+    \item Sébastien Le Maguer \url{slemaguer@coli.uni-saarland.de}
+    \item Kata Naszádi \url{b.naszadi@gmail.com}
+\end{itemize}
+
+The email subject should start with \verb|[PSR TUTORIAL 12]|
+
+
+\end{document}
+
+
